@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane prefHeight="377.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puzzle.controller.FXMLPuzzleController">
+    <children>
+        <HBox alignment="CENTER" prefHeight="381.0" prefWidth="749.0" spacing="30.0" styleClass="hbox-container">
+            <children>
+                <GridPane fx:id="gridPane" alignment="CENTER" hgap="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="350.0" styleClass="grid-pane" vgap="5">
+                    <children>
+                        <!-- Primeira linha -->
+                        <Pane styleClass="grid-cell">
+                            <children>
+                                <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="1" />
+                            </children>
+                        </Pane>
+                        <Pane styleClass="grid-cell" GridPane.columnIndex="1">
+                            <children>
+                                <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="2" />
+                            </children>
+                        </Pane>
+                        <Pane styleClass="grid-cell" GridPane.columnIndex="2">
+                            <children>
+                                <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="3" />
+                            </children>
+                        </Pane>
+                        <!-- Segunda linha -->
+                        <Pane styleClass="grid-cell" GridPane.rowIndex="1">
+                            <children>
+                                <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="4" />
+                            </children>
+                        </Pane>
+                        <Pane styleClass="grid-cell" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <children>
+                                <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="5" />
+                            </children>
+                        </Pane>
+                        <Pane styleClass="grid-cell" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                            <children>
+                                <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="6" />
+                            </children>
+                        </Pane>
+                        <!-- Terceira linha -->
+                        <Pane styleClass="grid-cell" GridPane.rowIndex="2">
+                            <children>
+                                <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="7" />
+                            </children>
+                        </Pane>
+                        <Pane styleClass="grid-cell" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <children>
+                                <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="8" />
+                            </children>
+                        </Pane>
+                        <Pane styleClass="grid-cell" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                            <children>
+                                <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="" />
+                            </children>
+                        </Pane>
+                    </children>
+                </GridPane>
+                
+                <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="400.0" spacing="20.0" styleClass="vbox-container">
+                    <children>
+                        <Label fx:id="titulo_principal" styleClass="title-label" text="8-Puzzle" />
+                        
+                        <VBox alignment="CENTER_LEFT" spacing="15" styleClass="form-container">
+                           <children>
+                               <Label fx:id="lblGeracaoAtual" alignment="CENTER" prefHeight="35.0" prefWidth="370.0" styleClass="generation-label" text="Geração: 0" />
+                               
+                               <Label fx:id="lblNumeroGeracoes" styleClass="input-label" text="Número de gerações:" />
+                               <TextField fx:id="txtNumeroGeracoes" promptText="Digite o número..." styleClass="input-field" />
+                               
+                               <Label fx:id="lblTamanhoPopulacao" styleClass="input-label" text="Tamanho da população:" />
+                               <TextField fx:id="txtTamanhoPopulacao" promptText="Digite o tamanho..." styleClass="input-field" />
+                           </children>
+                        </VBox>
+                        
+                        <VBox alignment="CENTER" spacing="10" styleClass="button-container">
+                           <children>
+                               <Button fx:id="goButton" onAction="#executarBusca" styleClass="action-button" text="Buscar" />
+                               <Button fx:id="reiniciaButton" onAction="#reiniciarTabuleiro" styleClass="action-button" text="Reiniciar Tabuleiro" />
+                               <Button fx:id="pararButton" disable="true" onAction="#pararBusca" styleClass="stop-button" text="Parar" />
+                           </children>
+                        </VBox>
+                        
+                        <Label fx:id="messageLabel" styleClass="message-label" text="" />
+                    </children>
+                </VBox>
+            </children>
+            <stylesheets>
+                <URL value="@tabuleiro.css" />
+                <URL value="@buttons.css" />
+                <URL value="@janela.css" />
+            </stylesheets>
+        </HBox>
+    </children>
+</StackPane>
