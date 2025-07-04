@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Puzzle.jnlp">
+  <information>
+    <title>Puzzle</title>
+    <vendor>sarar</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Puzzle.jar" size="26222" download="eager" />
+    <jar href="lib\javafx-swt.jar" size="36882" download="eager" />
+    <jar href="lib\javafx.base.jar" size="753825" download="eager" />
+    <jar href="lib\javafx.controls.jar" size="2585128" download="eager" />
+    <jar href="lib\javafx.fxml.jar" size="130176" download="eager" />
+    <jar href="lib\javafx.graphics.jar" size="4281904" download="eager" />
+    <jar href="lib\javafx.media.jar" size="277280" download="eager" />
+    <jar href="lib\javafx.swing.jar" size="89705" download="eager" />
+    <jar href="lib\javafx.web.jar" size="728165" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="puzzle.Puzzle"  name="Puzzle" />
+  <update check="always"/>
+</jnlp>
