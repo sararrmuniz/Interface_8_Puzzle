@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="puzzle.controller.FXMLPuzzleController">
+    <children>
+        <HBox alignment="CENTER" spacing="30.0" styleClass="hbox-container">
+            <children>
+
+                <!-- TABULEIRO -->
+                <VBox alignment="CENTER">
+                    <children>
+                        <GridPane fx:id="gridPane" alignment="CENTER" hgap="5" prefHeight="340.0" prefWidth="350.0" styleClass="grid-pane" vgap="5">
+                            <children>
+                                <!-- Primeira linha -->
+                                <Pane styleClass="grid-cell">
+                                    <children>
+                                        <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="1" />
+                                    </children>
+                                </Pane>
+                                <Pane styleClass="grid-cell" GridPane.columnIndex="1">
+                                    <children>
+                                        <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="2" />
+                                    </children>
+                                </Pane>
+                                <Pane styleClass="grid-cell" GridPane.columnIndex="2">
+                                    <children>
+                                        <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="3" />
+                                    </children>
+                                </Pane>
+                                <!-- Segunda linha -->
+                                <Pane styleClass="grid-cell" GridPane.rowIndex="1">
+                                    <children>
+                                        <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="4" />
+                                    </children>
+                                </Pane>
+                                <Pane styleClass="grid-cell" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <children>
+                                        <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="5" />
+                                    </children>
+                                </Pane>
+                                <Pane styleClass="grid-cell" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <children>
+                                        <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="6" />
+                                    </children>
+                                </Pane>
+                                <!-- Terceira linha -->
+                                <Pane styleClass="grid-cell" GridPane.rowIndex="2">
+                                    <children>
+                                        <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="7" />
+                                    </children>
+                                </Pane>
+                                <Pane styleClass="grid-cell" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <children>
+                                        <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="8" />
+                                    </children>
+                                </Pane>
+                                <Pane styleClass="grid-cell" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                    <children>
+                                        <Label prefHeight="100.0" prefWidth="100.0" styleClass="grid-number" text="" />
+                                    </children>
+                                </Pane>
+                            </children>
+                        </GridPane>
+                    </children>
+                </VBox>
+
+                <!-- PAINEL LATERAL SEM SCROLL -->
+                <VBox alignment="TOP_CENTER" prefWidth="400.0" spacing="15.0" styleClass="vbox-container">
+                    <children>
+                        <Label fx:id="titulo_principal" styleClass="title-label" text="8-Puzzle" />
+
+                        <!-- Centralizar o contador -->
+                        <HBox alignment="CENTER">
+                            <children>
+                                <Label fx:id="lblGeracaoAtual" alignment="CENTER" prefHeight="35.0" prefWidth="370.0" styleClass="generation-label" text="Geração: 0" />
+                            </children>
+                        </HBox>
+
+                        <VBox alignment="CENTER_LEFT" spacing="10" styleClass="form-container">
+                            <children>
+                                <Label fx:id="lblNumeroGeracoes" styleClass="input-label" text="Número de gerações:" />
+                                <TextField fx:id="txtNumeroGeracoes" prefWidth="180.0" promptText="Digite o número..." styleClass="input-field" />
+
+                                <Label fx:id="lblTamanhoPopulacao" styleClass="input-label" text="Tamanho da população:" />
+                                <TextField fx:id="txtTamanhoPopulacao" prefWidth="180.0" promptText="Digite o tamanho..." styleClass="input-field" />
+
+                                <!-- Mutação + Crossover lado a lado -->
+                                <HBox spacing="10">
+                                    <children>
+                                        <VBox spacing="5">
+                                            <children>
+                                                <Label fx:id="lblTaxaMutacao" styleClass="input-label" text="Taxa de Mutação:" />
+                                                <TextField fx:id="txtTaxaMutacao" prefWidth="100.0" promptText="Ex: 0.1" styleClass="input-field" />
+                                            </children>
+                                        </VBox>
+                                        <VBox spacing="5">
+                                            <children>
+                                                <Label fx:id="lblTaxaCrossover" styleClass="input-label" text="Taxa de Crossover:" />
+                                                <TextField fx:id="txtTaxaCrossover" prefWidth="100.0" promptText="Ex: 0.8" styleClass="input-field" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+
+                                <Label fx:id="lblElitismo" styleClass="input-label" text="Elitismo (%):" />
+                                <TextField fx:id="txtElitismo" prefWidth="100.0" promptText="Ex: 1" styleClass="input-field" />
+                                
+                                <!-- Controle de velocidade -->
+                                <HBox alignment="CENTER" spacing="10" styleClass="control-row">
+                                    <children>
+                                        <Label styleClass="control-label" text="Velocidade:" />
+                                        <Slider fx:id="velocidadeSlider" majorTickUnit="100" max="800" min="300" prefWidth="200" showTickLabels="true" showTickMarks="true" value="600" />
+                                        <Label fx:id="lblVelocidade" styleClass="value-label" text="ms" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+
+                        <!-- Botões na mesma linha -->
+                        <HBox alignment="CENTER" spacing="10" styleClass="button-container">
+                            <children>
+                                <Button fx:id="goButton" onAction="#executarBusca" styleClass="action-button" text="Buscar" />
+                                <Button fx:id="reiniciaButton" onAction="#reiniciarTabuleiro" styleClass="action-button" text="Reiniciar Tabuleiro" />
+                                <Button fx:id="pararButton" disable="true" onAction="#pararBusca" styleClass="stop-button" text="Parar" />
+                            </children>
+                        </HBox>
+
+                        <!-- Mensagem movida para cá -->
+                        <Label fx:id="messageLabel" styleClass="message-label" text="" />
+
+                        <!-- Container de informações da solução -->
+                        <VBox fx:id="infoContainer" alignment="CENTER" spacing="5" styleClass="info-container" visible="false">
+                            <children>
+                                <HBox alignment="CENTER" spacing="10">
+                                    <children>
+                                        <Label text="🏆 Melhor Fitness:" styleClass="info-title"/>
+                                        <Label fx:id="lblMelhorFitness" text="0.0000" styleClass="info-value"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" spacing="10">
+                                    <children>
+                                        <Label text="➤ Total de Movimentos:" styleClass="info-title"/>
+                                        <Label fx:id="lblTotalMovimentos" text="0" styleClass="info-value"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" spacing="10">
+                                    <children>
+                                        <Label text="🔄 Geração Encontrada:" styleClass="info-title"/>
+                                        <Label fx:id="lblGeracaoEncontrada" text="0" styleClass="info-value"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+    <stylesheets>
+        <URL value="@janela.css" />
+        <URL value="@tabuleiro.css" />
+        <URL value="@buttons.css" />
+    </stylesheets>
+</StackPane>
